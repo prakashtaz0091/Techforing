@@ -28,3 +28,20 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ("name", "owner", "created_at")
     search_fields = ("name", "owner__username")
     list_filter = ("created_at",)
+
+
+
+@admin.register(ProjectMember)
+class ProjectMemberAdmin(admin.ModelAdmin):
+    list_display = ("project", "user", "role")
+    list_filter = ("role", "project")
+    search_fields = ("project__name", "user__username")
+
+
+
+
+
+
+
+
+

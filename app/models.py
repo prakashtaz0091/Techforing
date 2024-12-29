@@ -66,3 +66,42 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProjectMember(models.Model):
+    """Model to store project members and their roles."""
+
+    PROJECT_MEMBER_ROLES = [
+        ("Admin", "Admin"),
+        ("Member", "Member"),
+    ]
+
+    project = models.ForeignKey(
+        Project,  
+        on_delete=models.CASCADE,
+        related_name="members",
+    )
+    user = models.ForeignKey(
+       User,  # Refers to the custom User model
+        on_delete=models.CASCADE,
+        related_name="project_memberships",
+    )
+    role = models.CharField(max_length=20, choices=PROJECT_MEMBER_ROLES)
+
+    class Meta:
+        unique_together = ("project", "user")  # Ensures a user cannot be added to the same project multiple times.
+
+    def __str__(self):
+        return f"{self.user.username} - {self.project.name} ({self.role})"
+
+
+
+
+
+
+
+
+
+
+
+
