@@ -64,4 +64,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Feel free to modify this template based on your specific project requirements! Let me know if you'd like help adding more details or customizing this further.
+## Contact Me
+
+If you have any questions, suggestions, or feedback, feel free to reach out to me:
+
+- **Email**: [code.ing2468@gmail.com](mailto:code.ing2468@gmail.com)
+- **LinkedIn**: [https://www.linkedin.com/in/prakash-tajpuriya-7b6663252/](https://https://www.linkedin.com/in/prakash-tajpuriya-7b6663252/)
+- **GitHub**: [github.com/prakashtaz0091](https://github.com/prakashtaz0091)
+
+---
