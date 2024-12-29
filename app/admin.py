@@ -39,6 +39,17 @@ class ProjectMemberAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ("title", "status", "priority", "assigned_to", "project", "due_date", "created_at")
+    list_filter = ("status", "priority", "project")
+    search_fields = ("title", "project__name", "assigned_to__username")
+
+
+
+
+
+
 
 
 

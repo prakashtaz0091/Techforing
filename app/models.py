@@ -96,6 +96,42 @@ class ProjectMember(models.Model):
 
 
 
+class Task(models.Model):
+    """Model to store task details."""
+
+    TASK_STATUSES = [
+        ("To Do", "To Do"),
+        ("In Progress", "In Progress"),
+        ("Done", "Done"),
+    ]
+
+    TASK_PRIORITIES = [
+        ("Low", "Low"),
+        ("Medium", "Medium"),
+        ("High", "High"),
+    ]
+
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    status = models.CharField(max_length=20, choices=TASK_STATUSES, default="To Do")
+    priority = models.CharField(max_length=20, choices=TASK_PRIORITIES, default="Medium")
+    assigned_to = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,  # If the assigned user is deleted, this field is set to NULL
+        null=True,
+        blank=True,
+        related_name="tasks",
+    )
+    project = models.ForeignKey(
+        Project,  
+        on_delete=models.CASCADE,
+        related_name="tasks",
+    )
+    created_at = models.DateTimeField(default=now)
+    due_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.title} - {self.status} ({self.priority})"
 
 
 
