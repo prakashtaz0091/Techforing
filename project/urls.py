@@ -5,7 +5,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from app.views import LogoutView
+from rest_framework.routers import DefaultRouter
+from app.views import LogoutView, UserViewSet
+
+router = DefaultRouter()
+router.register('users', UserViewSet, basename='user')
 
 
 urlpatterns = [
@@ -26,5 +30,5 @@ urlpatterns = [
     path('api/logout/', LogoutView.as_view(), name='logout'),
 
 
-]
+]+ router.urls
 
