@@ -135,6 +135,27 @@ class Task(models.Model):
 
 
 
+class Comment(models.Model):
+    """Model to store comments on tasks."""
+
+    content = models.TextField()
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="comments",
+    )
+    task = models.ForeignKey(
+        Task, 
+        on_delete=models.CASCADE,
+        related_name="comments",
+    )
+    created_at = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f"Comment by {self.user.username} on Task {self.task.title}"
+
+
+
 
 
 

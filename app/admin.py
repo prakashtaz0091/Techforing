@@ -47,6 +47,12 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("content", "user", "task", "created_at")
+    list_filter = ("created_at", "task")
+    search_fields = ("content", "user__username", "task__title")
+
 
 
 
