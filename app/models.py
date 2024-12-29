@@ -33,7 +33,6 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom User model."""
 
-    id = models.BigAutoField(primary_key=True)
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)  # Handled securely by AbstractBaseUser
@@ -51,3 +50,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+class Project(models.Model):
+    """Model to store project details."""
+
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    owner = models.ForeignKey(
+        User,  # Refers to the custom User model
+        on_delete=models.CASCADE,
+        related_name="projects",
+    )
+    created_at = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return self.name
